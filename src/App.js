@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className='container'>
-      <div className='btn'>
+      <div className='btn-container'>
         <h1>Meal of the day</h1>
         <button  class="btn btn-primary"  onClick={getRandomRecipe}>Generate your food of the day!</button>
       </div>
