@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { useState, useEffect } from 'react';
 
-const URL = 'https://api.spoonacular.com/recipes/random?apiKey=f10bc06bc4814ba7bde4690e75679ea1';
+//const URL = 'https://api.spoonacular.com/recipes/random?apiKey=f10bc06bc4814ba7bde4690e75679ea1';
 
 function App() {
   const [recipe, setRecipe] = useState(null);
@@ -26,7 +26,7 @@ function App() {
     <div className='container'>
       <div className='btn-container'>
         <h1>Meal of the day</h1>
-        <button  class="btn btn-primary"  onClick={getRandomRecipe}>Generate your food of the day!</button>
+        <button  class="btn btn-secondary"  onClick={getRandomRecipe}>Generate your food of the day!</button>
       </div>
       {recipe && (
         <div>
