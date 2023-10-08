@@ -3,14 +3,26 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { useState, useEffect } from 'react';
 
-//const URL = 'https://api.spoonacular.com/recipes/random?apiKey=f10bc06bc4814ba7bde4690e75679ea1';
+const randomURL = 'https://api.spoonacular.com/recipes/random?apiKey=f10bc06bc4814ba7bde4690e75679ea1';
+const dessertURL = 'https://api.spoonacular.com/recipes/random?apiKey=f10bc06bc4814ba7bde4690e75679ea1&tags=dessert'
+
 
 function App() {
   const [recipe, setRecipe] = useState(null);
 
   async function getRandomRecipe() {
     try {
-      const response = await axios.get(URL);
+      const response = await axios.get(randomURL);
+      console.log(response.data);
+      setRecipe(response.data.recipes[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function getDessertRecipe() {
+    try {
+      const response = await axios.get(dessertURL);
       console.log(response.data);
       setRecipe(response.data.recipes[0]);
     } catch (error) {
@@ -22,16 +34,21 @@ function App() {
     getRandomRecipe();
   }, []);
 
+
   return (
     <div className='container'>
+      <h1>Meal of the day</h1>
       <div className='btn-container'>
-        <h1>Meal of the day</h1>
-        <button  class="btn btn-secondary"  onClick={getRandomRecipe}>Generate your food of the day!</button>
+        <br></br>
+        <button class="btn btn-secondary" onClick={getRandomRecipe}>Generate your random meal of the day!</button>
+        <button className="btn btn-secondary" style={{ marginLeft: '10px' }} onClick={getDessertRecipe}>
+          Get a dessert recipe
+        </button>
       </div>
       {recipe && (
-        <div>
+        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h2>{recipe.title}</h2>
-          <img src={recipe.image} alt={recipe.title} />
+          <img src={recipe.image} alt={recipe.title} style={{ maxWidth: '100%', height: 'auto', marginTop: '20px', marginBottom: '20px' }} />
           <div className="ingredients">
             <div>
               <h3>Ingredients needed:</h3>
